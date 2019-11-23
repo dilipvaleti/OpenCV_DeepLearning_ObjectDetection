@@ -21,11 +21,14 @@ data_file=sys.argv[1]
 #data_file=input("File location : ")
 file_type=None
 
-if data_file.split(".")[1] in ["png","jpg","ipeg","tiff"]:
-    file_type="image"
-if data_file.split(".")[1] in ["mov","avi","mp4","mkv"]:
+if data_file == '0': # This condition is will allow to use webcam to detect objects
     file_type="video"
-
+    data_file= 0 
+elif data_file.split(".")[1] in ["png","jpg","ipeg","tiff"]:
+    file_type="image"
+elif data_file.split(".")[1] in ["mov","avi","mp4","mkv"]:
+    file_type="video"
+    
 #load the caffe model
 model_name='MobileNetSSD_deploy.caffemodel' # model trained on thousends of images to detect 20 objects
 model_proto='MobileNetSSD_deploy.prototxt.txt' # find the architecture of CNN, here we are using MobileNet SSD arch is a prety nice arch
